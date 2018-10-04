@@ -24,7 +24,7 @@ function crearProducto(pdv, pq) {
     if ((productos[i].paquete == pq && (productos[i].pdv == pdv || pdv == 0))
         && (productos[i].pdv == pdvIn.value || pdvIn.value == 0)) {
       var x = margenLeft;
-      var y = margenTop + altoCelda * lineaSalida;
+      var y = margenTop + altoCelda * lineaSalida + 1;
       for (var j = 0; j < 4; j++) {
         // Creo el div de los productos
         var celda = new Celda("prod"+lineaSalida+j, altoCelda, anchoCelda, definirColor(), y, x);
@@ -53,6 +53,7 @@ function crearProducto(pdv, pq) {
 function crearPaquete() {
   var x = margenLeft;
   var pdvIn = document.getElementById("pdv");
+  var graboPaquete = false;
   for (var i = 0; i < paquetes.length; i++) {
     if (paquetes[i].pdv == pdvIn.value || pdvIn.value == 0) {
       var y = margenTop + altoCelda * lineaSalida ;
@@ -72,7 +73,7 @@ function crearPaquete() {
           generarGrilla();
         } //end-function
       ) //end-addEventListener
-      console.log(paqSel)
+      graboPaquete = true;
       var index = paqSel.indexOf(celda.nombre);
       if (index > -1) {
         crearEncabezado()    
@@ -80,6 +81,16 @@ function crearPaquete() {
       }
     } //end-if
   } //end-for
+  if (graboPaquete == false) {
+    // Creo el titulo indicando que no hay paquetes
+    var celda = new Celda("sinPq", altoCelda, anchoGrilla, "#3D628C", margenTop, margenLeft);
+    celda.agregar("fondo");
+    grillaSalida.push(celda.nombre);
+    texto = [];
+    texto.push('<small style="margin-right:4px"> No existen paquetes para el PDV </small>')      
+    document.getElementById(celda.nombre).innerHTML = texto.join('');
+    lineaSalida = 1;
+  }
 };//end-function
 
 function crearEncabezado() {
@@ -130,17 +141,17 @@ function generarGrilla() {
   celda.agregar("fondo");
   grillaSalida.push(celda.nombre);
   texto = [];
-  texto.push('<small style="margin-right:4px"> Paquetes </small>')      
+  texto.push('<small style="margin-right:px; color:white;"> Paquetes </small>')      
   document.getElementById(celda.nombre).innerHTML = texto.join('');
   lineaSalida = 1;
   // Creo la lista de paquetes
   crearPaquete()
   // Creo el titulo de para los productos sueltos
-  var celda = new Celda("tituo2", altoCelda, anchoGrilla, "#3D628C", margenTop + altoCelda * lineaSalida, margenLeft);
+  var celda = new Celda("tituo2", altoCelda, anchoGrilla, "#3D628C", margenTop + altoCelda * lineaSalida + 1, margenLeft);
   celda.agregar("fondo");
   grillaSalida.push(celda.nombre);
   texto = [];
-  texto.push('<small style="margin-right:4px"> Productos sueltos </small>')      
+  texto.push('<small style="margin-right:4px; color:white;"> Productos sueltos </small>')      
   document.getElementById(celda.nombre).innerHTML = texto.join('');
   lineaSalida = lineaSalida + 1;
   // Creo el titulo de los productos sueltos
