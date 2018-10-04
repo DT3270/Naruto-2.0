@@ -3,9 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+
 </head>
-<body>
-	<input type="file" id="file-input" accept=".txt, .csv" />
+<body">
+	<div id="fondo" style="overflow-y:auto; height:200px;">
+		<img src="https://vignette.wikia.nocookie.net/logopedia/images/c/c9/Naruto_logo.svg/revision/latest?cb=20170408004654" 
+		style="width:260px;height:100px;left: 250px;position: absolute;">
+		<input type="file" id="file-input" accept=".txt, .csv" /
+		style="width:260px;height:200px;top: 160px;left: 8px;position: absolute;">
+		<select id="pdv"
+		style="width:260px;height:22px;top: 160px;left: 550px;position: absolute;">
+	   		<option value="0">Seleccione un punto de venta</option> 
+	   		<option value="1">1: Tu vieja</option> 
+	   		<option value="2">2: Tu vieja en tanga</option> 
+	   		<option value="3">3: La vieja de Muhls</option>
+		</select>
+	</div>
 	<script src="js/funciones.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/crearArchivo.js"></script>

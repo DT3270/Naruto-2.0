@@ -5,14 +5,18 @@ const anchoGrilla = anchoCelda * columnas + columnas -1;
 const margenTop = 200;
 const margenLeft = 8;
 
-var elementoSel;
-var indPaquete = 'n'
 var lineaSalida = 1;
 var grillaSalida = [];
-var encabezado
+var paqSel = [];
+var encabezado;
 var paquetes = [];
 var productos = [];
 
-document.getElementById('file-input')
-  .addEventListener('change', procesarArchivo, false);
+//var fondo = document.getElementById("fondo");
+//console.log(fondo);
 
+document.getElementById('file-input')
+  .addEventListener('change', leerArchivo, false);
+
+document.getElementById('pdv')
+  .addEventListener('change', generarGrilla, false);
